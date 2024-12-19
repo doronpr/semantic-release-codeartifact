@@ -61,10 +61,13 @@ export const getCodeArtifactConfig = async (
     return { authorizationToken, repositoryEndpoint };
   } catch (e) {
     if (e instanceof AggregateError) throw e;
-
     if (isAWSError(e)) {
+      console.error('111');
+      console.error(e);
       errors.push(getError('EAWSSDK', { message: e.message, name: e.name }));
     } else {
+      console.error('222');
+      console.error(e);
       errors.push(
         getError('EAWSSDK', {
           name: 'UnknownException',
